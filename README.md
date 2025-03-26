@@ -10,7 +10,7 @@ This Astro CLI project demonstrates how to use the [Airflow AI SDK](https://gith
 
 # Run Your Project Locally
 
-1. Start Airflow on your local machine by running 'astro dev start'.
+1. Start Airflow on your local machine by running `astro dev start` with the [Astro CLI](https://github.com/astronomer/astro-cli).
 
 This command will spin up 4 Docker containers on your machine, each for a different Airflow component:
 
