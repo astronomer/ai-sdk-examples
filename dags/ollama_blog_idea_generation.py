@@ -64,7 +64,7 @@ def display_blog_ideas(blog_ideas: list[BlogIdea]):
 def ollama_blog_idea_generation():
     products = get_products()
     blog_ideas = generate_blog_idea.expand(product=products)
-    display_blog_ideas(blog_ideas)  # Pass the mapped XCom directly to the display task
+    display_blog_ideas(blog_ideas)
 
 ollama_blog_idea_generation_dag = ollama_blog_idea_generation()
 if __name__ == "__main__":
