@@ -42,7 +42,7 @@ class BlogIdea(ai_sdk.BaseModel):
     Product Name: [Insert Product Name Here]
     """,
 )
-def generate_blog_idea(product: dict | None = None) -> BlogIdea:
+def generate_blog_idea(product: dict | None = None):
     if product is None:
         raise AirflowSkipException("No product provided")
 
