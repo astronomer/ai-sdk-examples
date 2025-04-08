@@ -1,5 +1,8 @@
 """
-This example consumes a list of products and produces a collection of blog ideas
+This example consumes a list of products and produces a collection of blog ideas.
+
+To run this example, you need to have ollama running locally. See https://github.com/ollama/ollama/blob/main/README.md#quickstart
+for more information.
 """
 
 import pendulum
@@ -9,6 +12,14 @@ from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 import airflow_ai_sdk as ai_sdk
+
+model = OpenAIModel(
+    model_name="llama3.2",
+    provider=OpenAIProvider(
+        # change this to your ollama host if it's different
+        base_url="http://host.docker.internal:11434/v1"
+    ),
+)
 
 
 @task
@@ -27,12 +38,7 @@ class BlogIdea(ai_sdk.BaseModel):
 
 
 @task.llm(
-    model=OpenAIModel(
-        model_name="llama3.1:8b",
-        provider=OpenAIProvider(
-            base_url="http://host.docker.internal:11434/v1"
-        ),
-    ),
+    model=model,
     result_type=BlogIdea,
     system_prompt="""
     You are an experienced content strategist tasked with generating an engaging and informative blog idea based on a given product name. Given the product name provided, produce a compelling idea for a blog post.
